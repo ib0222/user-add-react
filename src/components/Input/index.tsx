@@ -9,7 +9,7 @@ function Input({ setStudents }: InputProps) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [gpa, setGpa] = useState(0)
-
+  
   const addStudents = () => {
     setStudents((prevStudents) => [...prevStudents, { name, email, gpa }])
   }
