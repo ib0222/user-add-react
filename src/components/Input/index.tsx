@@ -11,7 +11,16 @@ function Input({ setStudents }: InputProps) {
   const [gpa, setGpa] = useState(0)
 
   const addStudents = () => {
-    setStudents((prevStudents) => [...prevStudents, { id: getRandomID(), name, email, gpa }])
+    if (name === "" || email === "") {
+      return
+    }
+    setStudents((prevStudents) => [
+      ...prevStudents,
+      { id: getRandomID(), name, email, gpa },
+    ])
+    setName("")
+    setEmail("")
+    setGpa(0)
   }
 
   return (
@@ -32,7 +41,7 @@ function Input({ setStudents }: InputProps) {
       </div>
       <div>
         <input
-          type="text"
+          type="email"
           placeholder="email"
           className="border-2 p-2 text-xl rounded-xl"
           value={email}
@@ -47,7 +56,7 @@ function Input({ setStudents }: InputProps) {
           step={0.1}
           max={5}
           min={1}
-          className="border-2 p-2 text-xl rounded-xl"
+          className="border-2 p-2 text-xl rounded-xl w-full"
           value={gpa}
           onChange={(e) => setGpa(e.target.valueAsNumber)}
         />
