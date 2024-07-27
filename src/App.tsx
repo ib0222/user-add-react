@@ -1,12 +1,7 @@
 import { useState } from "react"
 import Input from "./components/Input"
 import Table from "./components/Table"
-
-export interface Student {
-  name: string
-  email: string
-  gpa: number
-}
+import { Student } from "./lib"
 
 function App() {
   const [students, setStudents] = useState<Student[]>([])

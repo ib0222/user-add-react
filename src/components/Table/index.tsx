@@ -1,7 +1,7 @@
-import { Student } from "../../App";
+import { Student } from "../../lib"
 
 interface TableProps {
-  students: Student[];
+  students: Student[]
 }
 
 function Table({ students }: TableProps) {
@@ -28,23 +28,22 @@ function Table({ students }: TableProps) {
           <tbody>
             {students.map((student) => (
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {student.id}
-              </th>
-              <td className="px-6 py-4">{student.name}</td>
-              <td className="px-6 py-4">{student.email}</td>
-              <td className="px-6 py-4">{student.gpa}</td>
-            </tr>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {student.id}
+                </th>
+                <td className="px-6 py-4">{student.name}</td>
+                <td className="px-6 py-4">{student.email}</td>
+                <td className="px-6 py-4">{student.gpa}</td>
+              </tr>
             ))}
-            
           </tbody>
         </table>
       </div>
     </>
-  );
+  )
 }
 
-export default Table;
+export default Table

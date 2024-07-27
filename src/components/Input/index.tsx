@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Student } from "../../App"
+import getRandomID, { Student } from "../../lib"
 
 interface InputProps {
   setStudents: React.Dispatch<React.SetStateAction<Student[]>>
@@ -9,9 +9,9 @@ function Input({ setStudents }: InputProps) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [gpa, setGpa] = useState(0)
-  
+
   const addStudents = () => {
-    setStudents((prevStudents) => [...prevStudents, { name, email, gpa }])
+    setStudents((prevStudents) => [...prevStudents, { id: getRandomID(), name, email, gpa }])
   }
 
   return (
