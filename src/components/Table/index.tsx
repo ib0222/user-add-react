@@ -1,9 +1,15 @@
-import React from 'react'
+import { Student } from "../../App"
 
-function Table({students}) {
+interface TableProps {
+  students: Student[]
+}
+
+function Table({ students }: TableProps) {
   return (
-    <div className='mt-3'>
-          {students}
+    <div className="mt-3">
+      {students.map((student) => (
+        <div>{student.name}</div>
+      ))}
     </div>
   )
 }

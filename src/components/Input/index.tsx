@@ -1,15 +1,17 @@
-import React from "react";
-import { useState } from "react";
-function Input({setStudents}) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+import { useState } from "react"
+import { Student } from "../../App"
+
+interface InputProps {
+  setStudents: React.Dispatch<React.SetStateAction<Student[]>>
+}
+
+function Input({ setStudents }: InputProps) {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [gpa, setGpa] = useState(0)
 
   const addStudents = () => {
-    setStudents((prev) => {
-      return [...prev,{
-        name,email
-      }]
-    })
+    setStudents((prevStudents) => [...prevStudents, { name, email, gpa }])
   }
 
   return (
@@ -22,8 +24,9 @@ function Input({setStudents}) {
           type="text"
           placeholder="name"
           className="border-2 p-2 text-xl rounded-xl"
+          value={name}
           onChange={(e) => {
-            setName(e.target.value);
+            setName(e.target.value)
           }}
         />
       </div>
@@ -32,21 +35,34 @@ function Input({setStudents}) {
           type="text"
           placeholder="email"
           className="border-2 p-2 text-xl rounded-xl"
+          value={email}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setEmail(e.target.value)
           }}
         />
       </div>
       <div>
-        <input type="text" className="border-2 p-2 text-xl rounded-xl" />
+        <input
+          type="number"
+          step={0.1}
+          max={5}
+          min={1}
+          className="border-2 p-2 text-xl rounded-xl"
+          value={gpa}
+          onChange={(e) => setGpa(e.target.valueAsNumber)}
+        />
       </div>
       <div className="text-center">
-        <button className="p-2 text-xl bg-slate-100 w-full rounded-xl hover:bg-slate-400 ease-in-out duration-200" onClick={addStudents}>
+        <button
+          className="p-2 text-xl bg-slate-100 w-full rounded-xl hover:bg-slate-400 ease-in-out duration-200"
+          type="submit"
+          onClick={addStudents}
+        >
           Add
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-export default Input;
+export default Input
