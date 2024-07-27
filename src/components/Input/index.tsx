@@ -24,7 +24,7 @@ function Input({ setStudents }: InputProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full">
       <div className="text-center">
         <h1 className="text-3xl mb-5">Add User</h1>
       </div>
@@ -32,7 +32,7 @@ function Input({ setStudents }: InputProps) {
         <input
           type="text"
           placeholder="name"
-          className="border-2 p-2 text-xl rounded-xl"
+          className="border-2 p-2 text-xl rounded-xl w-full"
           value={name}
           onChange={(e) => {
             setName(e.target.value)
@@ -43,7 +43,7 @@ function Input({ setStudents }: InputProps) {
         <input
           type="email"
           placeholder="email"
-          className="border-2 p-2 text-xl rounded-xl"
+          className="border-2 p-2 text-xl rounded-xl w-full"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value)

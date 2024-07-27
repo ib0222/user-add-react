@@ -6,12 +6,15 @@ import Search from "./components/Search"
 
 function App() {
   const [students, setStudents] = useState<Student[]>([])
+  const [filteredStudents, setFilteredStudents] = useState<Student[]>([])
 
   return (
-    <div className="flex justify-center mt-10 items-center flex-col">
-      <Input setStudents={setStudents} />
-      <Search setStudents={setStudents}/>
-      <Table setStudents={setStudents} students={students} />
+    <div className="flex justify-center mt-10 items-center flex-col mx-auto px-6">
+      <div className="max-w-xl w-full mx-auto">
+        <Input setStudents={setStudents} />
+        <Search setFilteredStudents={setFilteredStudents} students={students} />
+      </div>
+      <Table setStudents={setStudents} students={filteredStudents} />
     </div>
   )
 }

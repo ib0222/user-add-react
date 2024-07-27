@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { Student } from "../../lib";
+import React, { useEffect, useState } from "react"
+import { Student } from "../../lib"
+
 interface SearchProps {
-  setStudents: React.Dispatch<React.SetStateAction<Student[]>>;
+  students: Student[]
+  setFilteredStudents: React.Dispatch<React.SetStateAction<Student[]>>
 }
 
-const Search = ({ setStudents }: SearchProps) => {
-  const [searchItem, setSearchItem] = useState("");
+const Search = ({ students, setFilteredStudents }: SearchProps) => {
+  const [searchItem, setSearchItem] = useState("")
+
+  useEffect(() => {
+    const filteredStudents = students.filter((student) =>
+      student.name.toLowerCase().includes(searchItem.toLowerCase())
+    )
+    setFilteredStudents(filteredStudents)
+  }, [searchItem, students, setFilteredStudents])
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 w-full">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -39,14 +48,12 @@ const Search = ({ setStudents }: SearchProps) => {
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search"
           required
-          onChange={(e) => {
-            setSearchItem(e.target.value);
-            console.log(searchItem);
-          }}
+          value={searchItem}
+          onChange={(e) => setSearchItem(e.target.value)}
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
