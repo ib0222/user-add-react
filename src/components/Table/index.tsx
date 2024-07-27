@@ -63,9 +63,9 @@ function Table({ students, setStudents }: TableProps) {
                 </tr>
               ))
             ) : (
-              <div className="p-4 flex justify-center items-center text-center">
-                No student
-              </div>
+              <tr className="p-4 flex justify-center items-center text-center">
+                <td>No student</td>
+              </tr>
             )}
           </tbody>
         </table>
