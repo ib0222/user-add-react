@@ -1,10 +1,20 @@
-import { Student } from "../../lib"
+import { Student } from "../../lib";
 
 interface TableProps {
-  students: Student[]
+  students: Student[];
+  setStudents: React.Dispatch<React.SetStateAction<Student[]>>
 }
 
-function Table({ students }: TableProps) {
+function Table({ students,setStudents }: TableProps) {
+
+  function deleteStudent(id){
+    const filteredStudents = students.filter((student) => (
+      student.id !== id
+      
+    ))
+    setStudents(filteredStudents)
+  }
+
   return (
     <>
       <div className="relative overflow-x-auto mt-5 rounded-md">
@@ -23,11 +33,14 @@ function Table({ students }: TableProps) {
               <th scope="col" className="px-6 py-3">
                 GPA
               </th>
+              <th scope="col" className="px-6 py-3 ">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
             {students.map((student) => (
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={student.id}>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -37,13 +50,16 @@ function Table({ students }: TableProps) {
                 <td className="px-6 py-4">{student.name}</td>
                 <td className="px-6 py-4">{student.email}</td>
                 <td className="px-6 py-4">{student.gpa}</td>
+                <td className="text-center">
+                  <button className="text-xl" onClick={() => deleteStudent(student.id)}>🗑️</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </>
-  )
+  );
 }
 
-export default Table
+export default Table;

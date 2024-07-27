@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="flex justify-center mt-10 items-center flex-col">
       <Input setStudents={setStudents} />
-      <Table students={students} />
+      <Table setStudents={setStudents} students={students} />
     </div>
   )
 }
